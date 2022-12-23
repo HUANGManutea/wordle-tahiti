@@ -1,0 +1,14 @@
+/* incorrect char */
+.invalid {
+    @apply bg-red-500;
+}
+
+/* misplaced char */
+.misplaced {
+    @apply bg-yellow-500;
+}
+
+/* correct char */
+.valid {
+    @apply bg-green-500;
+}
