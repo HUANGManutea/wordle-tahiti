@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 type KeyboardProps = {
     onKeyChosen: Function,
-    won: boolean
+    gameState: string
 };
 
 interface KeyboardEvent {
@@ -45,28 +45,42 @@ export default function Keyboard(props: KeyboardProps) {
         }
     }
     useEffect(() => {
-        if (!props.won) {
+        if (props.gameState === 'RUNNING') {
             document.addEventListener("keydown", keyDownHandler);
             return () => {
                 document.removeEventListener("keydown", keyDownHandler);
             }
         }
-    }, [props.won]);
+    }, [props.gameState]);
 
     return (
         <div className="flex flex-col gap-2">
             <div className="flex flex-row justify-center gap-2">
                 {voyelles.map((letter) => (
-                        <Key key={letter.key} letter={letter} onKeyLongPressed={(letter: Letter) => {if (!props.won) keyLongPressed(letter)}} onKeyPressed={(letter: Letter) => {if (!props.won) props.onKeyChosen(letter.key)}}></Key>
+                        <Key key={letter.key}
+                            letter={letter}
+                            onKeyLongPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') keyLongPressed(letter)}}
+                            onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
                     ))}
-                <Key key={eta.key} letter={eta} onKeyLongPressed={() => {}} onKeyPressed={(letter: Letter) => {if (!props.won) props.onKeyChosen(letter.key)}}></Key>
-                <Key key={backspace.key} letter={backspace} onKeyLongPressed={() => {}} onKeyPressed={(letter: Letter) => {if (!props.won) props.onKeyChosen(letter.key)}}></Key>
+                <Key key={eta.key}
+                    letter={eta}
+                    onKeyLongPressed={() => {}}
+                    onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
+                <Key key={backspace.key}
+                    letter={backspace} onKeyLongPressed={() => {}}
+                    onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
             </div>
             <div className="flex flex-row justify-center gap-2">
                 {consonnes.map((letter) => (
-                    <Key key={letter.key} letter={letter} onKeyLongPressed={() => {}} onKeyPressed={(letter: Letter) => {if (!props.won) props.onKeyChosen(letter.key)}}></Key>
+                    <Key key={letter.key}
+                        letter={letter}
+                        onKeyLongPressed={() => {}}
+                        onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
                 ))}
-                <Key key={enter.key} letter={enter} onKeyLongPressed={() => {}} onKeyPressed={(letter: Letter) => {if (!props.won) props.onKeyChosen(letter.key)}}></Key>
+                <Key key={enter.key}
+                    letter={enter}
+                    onKeyLongPressed={() => {}}
+                    onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
             </div>
         </div>
     );

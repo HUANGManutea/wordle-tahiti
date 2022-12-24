@@ -1,3 +1,4 @@
+import { Theme } from "../lib/theme";
 import Tile from "./Tile/tile";
 
 type BoardProps = {
@@ -5,7 +6,8 @@ type BoardProps = {
     tries: number,
     wordLength: number,
     currentTentative: string,
-    tentatives: Array<string>
+    tentatives: Array<string>,
+    theme: Theme
 };
 
 const padTentative = (tentative: string, wordLength: number) => {
@@ -35,7 +37,11 @@ export default function Board(props: BoardProps) {
         <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-2">
                     <div className="grid grid-cols-5 gap-2 h-16 m-auto">
-                        {padTentative(props.currentTentative, props.wordLength).split("").map((char, indexChar) => (<Tile key={`tile-currtent-${indexChar}`} character={char} valid={0}></Tile>))}
+                        {
+                            padTentative(props.currentTentative, props.wordLength).split("").map((char, indexChar) => (
+                                <Tile key={`tile-currtent-${indexChar}`} theme={props.theme} character={char} valid={0}></Tile>
+                            ))
+                        }
                     </div>
             </div>
             <div className="flex flex-col gap-2">
@@ -43,17 +49,14 @@ export default function Board(props: BoardProps) {
                     props.tentatives.map((tentative, indexTentative) => {
                         return (
                             <div key={`tentative-${indexTentative}`} className="grid grid-cols-5 gap-2 h-16 m-auto">
-                                {tentative.split("").map((char, indexChar) => (<Tile key={`tile-${indexTentative}-${indexChar}`} character={char} valid={computeValidTile(indexTentative, char, indexChar)}></Tile>))}
+                                {
+                                    tentative.split("").map((char, indexChar) => (
+                                        <Tile key={`tile-${indexTentative}-${indexChar}`} theme={props.theme} character={char} valid={computeValidTile(indexTentative, char, indexChar)}></Tile>
+                                    ))
+                                }
                             </div>
                         )
                     })
-                    // props.chars.map((charTentative, indexTentative) => {
-                    //     return (
-                    //         <div key={`tentative-${indexTentative}`} className="grid grid-cols-5 gap-2 h-16 m-auto">
-                    //             {charTentative.map((char, indexChar) => (<Tile key={`tile-${indexTentative}-${indexChar}`} character={char} valid={computeValidTile(indexTentative, char, indexChar)}></Tile>))}
-                    //         </div>
-                    //     )
-                    // })
                 }
             </div>
         </div>
