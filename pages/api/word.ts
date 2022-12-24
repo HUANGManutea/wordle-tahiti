@@ -1,6 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { differenceInDays } from 'date-fns/fp';
+import { differenceInDays, format } from 'date-fns/fp';
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { zonedTimeToUtc } from 'date-fns-tz'
+
 
 export type Data = {
   word: string
@@ -14,8 +16,9 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   if (dateDebut) {
-    console.log("dateDebut");
-    const diffDays = differenceInDays(new Date(), Date.parse(dateDebut));
+    const dateDebutUTC = zonedTimeToUtc(dateDebut, 'Pacific/Tahiti');
+    const currentDateUTC = new Date();
+    const diffDays = differenceInDays(currentDateUTC, dateDebutUTC);
     res.status(200).json({ word: wordList[diffDays%wordList.length] })
   } else {
     res.status(500).json({word: ""});
