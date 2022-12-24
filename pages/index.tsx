@@ -5,8 +5,17 @@ import React, { useState, useEffect } from "react";
 import Modal from '../components/modal';
 import { Data } from './api/word';
 
-export default function Home() {
-  const [word, setWord] = useState("");
+type HomeProps = {
+  word: string
+}
+
+export async function getServerSideProps() {
+  const res = await fetch("http://localhost:3000/api/word");
+  const data: Data = await res.json();
+  return {props: {word: data.word}};
+}
+
+export default function Home(props: HomeProps) {
   const wordLength = 5;
   const tries = 5;
   const [tentatives, setTentatives] = useState<Array<string>>(Array(tries).fill("     "));
@@ -15,15 +24,6 @@ export default function Home() {
   const [won, setWon] = useState(false);
   const [selectedKey, setSelectedKey] = useState("");
   const [isModalHidden, setIsModalHidden] = useState(true);
-
-  
-  fetch("/api/word", {
-    method: "GET",
-  }).then((response: Response) => {
-    return response.json();
-  }).then((data: Data) => {
-    setWord(data.word);
-  });
 
   const onKeyChosen = (char: string) => {
     setSelectedKey(char);
@@ -48,7 +48,7 @@ export default function Home() {
           setTentatives(copyTentatives);
           setCurrentTentative("");
           setTentativeIndex(tentativeIndex + 1);
-          if (copyCurrentTentative === word) {
+          if (copyCurrentTentative === props.word) {
             setWon(true);
           }
         }
@@ -65,7 +65,7 @@ export default function Home() {
     }
   });
 
-  if (word === "") return <div>Récupération du mot...</div>;
+  if (props.word == null || props.word === "") return <div>Récupération du mot...</div>;
 
   return (
     <>
@@ -76,7 +76,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className='flex flex-col justify-between min-h-screen m-auto p-5 sm:p-20'>
-          <Board word={word} tries={tries} wordLength={wordLength} tentatives={tentatives} currentTentative={currentTentative}></Board>
+          <Board word={props.word} tries={tries} wordLength={wordLength} tentatives={tentatives} currentTentative={currentTentative}></Board>
           <Keyboard won={won} onKeyChosen={(char: string) => onKeyChosen(char)}></Keyboard>
       </div>
       <Modal text='Bravo !' isHidden={isModalHidden} onSuccessClick={() => setIsModalHidden(!isModalHidden)}></Modal>
