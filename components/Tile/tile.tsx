@@ -7,7 +7,7 @@ type TileProps = {
 
 export default function Tile(props: TileProps) {
     const getStyle = () => {
-        let classname = "p-3 border-solid border-2 border-gray-500 rounded-md h-16 w-16 text-center ";
+        let classname = "p-3 border-solid border-2 border-gray-500 rounded-md text-center app-cell ";
         if (props.valid === 1) classname += styles.invalid;
         else if (props.valid === 2) classname +=  styles.misplaced;
         else if (props.valid === 3) classname +=  styles.valid;

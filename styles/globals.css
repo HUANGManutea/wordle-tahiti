@@ -51,3 +51,7 @@ a {
     color-scheme: dark;
   }
 }
+
+.app-cell {
+  @apply sm:h-8 sm:w-8 md:h-16 md:w-16 ;
+}

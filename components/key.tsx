@@ -14,6 +14,6 @@ export default function Key(props: KeyProps) {
         onCancel: () => props.onKeyPressed(props.letter)
     });
     return (
-        <button {...bind()} className="p-5 border-solid border-2 border-gray-300 rounded-md h-16 w-16 text-center active:bg-gray-300 active:text-black">{props.letter.key}</button>
+        <button {...bind()} className="p-5 border-solid border-2 border-gray-300 rounded-md app-cell text-center active:bg-gray-300 active:text-black">{props.letter.key}</button>
     );
 }
