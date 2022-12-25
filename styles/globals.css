@@ -71,3 +71,15 @@ a {
 .app-modal-content {
   @apply p-5 flex flex-col h-4/5 w-4/5 sm:h-3/4 sm:w-1/2 rounded-md border-solid border-2 border-gray-300 bg-gray-700;
 }
+
+h1 {
+  @apply text-2xl;
+}
+
+h2 {
+  @apply text-xl font-bold;
+}
+
+a {
+  @apply underline;
+}

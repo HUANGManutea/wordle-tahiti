@@ -8,6 +8,7 @@ import Header from '../components/header';
 import { Theme } from '../lib/theme';
 import Tile from '../components/tile';
 import Drawer from '../components/drawer';
+import { CodeBracketIcon, BookOpenIcon, PencilSquareIcon, UserGroupIcon } from '@heroicons/react/24/solid'
 
 type HomeProps = {
   word: string
@@ -144,7 +145,40 @@ export default function Home(props: HomeProps) {
           <Keyboard gameState={gameState} onKeyChosen={(char: string) => onKeyChosen(char)}></Keyboard>
       </div>
       <Drawer isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen}>
-        <p>coucou</p>
+        <div className='flex flex-col gap-3'>
+          <div className='flex flex-col gap-3'>
+            <h2>A propos</h2>
+            <p>Ce site a été développé par HUANG Manutea en partenariat avec l'association Tahiti DevOps et l'Académie Tahitienne (Fare Vanaa).</p>
+            <h2>Remerciements</h2>
+            <p>Je remercie l'association Tahiti DevOps pour leur engouement et pour avoir contacté l'Académie Tahitienne.</p>
+            <p>Je remercie l'Académie Tahitienne pour m'avoir fourni la liste des mots de 5 lettres du dictionnaire Tahitien.</p>
+            <h2>Licence</h2>
+            <p>Ce site n'a aucun but lucratif. Le code source de ce site ainsi que la liste des mots sont sous licence Creative Common.</p>
+            <h2>En savoir plus</h2>
+            <div className='flex flex-col gap-2'>
+              <div className='flex flex-row gap-1 items-center'>
+                <UserGroupIcon className='h-5'></UserGroupIcon>
+                <a className={theme.textValid} href="https://tahiti.dev/" target="_blank">L'association Tahiti DevOps</a>
+              </div>
+              <div className='flex flex-row gap-1 items-center'>
+                <BookOpenIcon className='h-5'></BookOpenIcon>
+                <a className={theme.textValid} href="http://www.farevanaa.pf/" target="_blank">L'académie Tahitienne (Fare Vanaa)</a>
+              </div>
+              <div className='flex flex-row gap-1 items-center'>
+                <PencilSquareIcon className='h-5'></PencilSquareIcon>
+                <a className={theme.textValid} href="https://huangmanutea.github.io/blog.dev/" target="_blank">Mon blog</a>
+              </div>
+              <div className='flex flex-row gap-1 items-center'>
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-white"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z"></path></svg>
+                <a className={theme.textValid} href="https://github.com/HUANGManutea" target="_blank">Mon GitHub</a>
+              </div>
+              <div className='flex flex-row gap-1 items-center'>
+                <CodeBracketIcon className='h-5'></CodeBracketIcon>
+                <a className={theme.textValid} href="https://github.com/HUANGManutea/wordle-tahiti" target="_blank">Le code source de Wordle Tahiti</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </Drawer>
       <Modal theme={theme} isHidden={isModalResultHidden} setIsHidden={setIsModalResultHidden}>
         <div className='flex flex-grow justify-center items-center text-center'>
@@ -164,19 +198,19 @@ export default function Home(props: HomeProps) {
       </Modal>
       <Modal isHidden={isModalHowToHidden} setIsHidden={setIsModalHowToHidden} theme={theme}>
         <div>
-            <h2 className="underline">Règles</h2>
+            <h2>Règles</h2>
             <p>Vous devez deviner le mot du jour en 5 essais.</p>
             <p>Le mot du jour est un mot tahitien de 5 lettres.</p>
             <p>Le 'eta est une lettre.</p>
             <br/>
         </div>
         <div>
-            <h2 className="underline">Saisie</h2>
+            <h2>Saisie</h2>
             <p>Vous pouvez écrire les lettres avec votre clavier si vous êtes sur un ordinateur. Vous pouvez aussi cliquer/appuyer sur le clavier virtuel tahitien en bas de page.</p>
             <br/>
         </div>
         <div>
-            <h2 className="underline">Déroulement du jeu</h2>
+            <h2>Déroulement du jeu</h2>
             <p>Une fois que vous avez renseigné les 5 lettres, appuyez sur la touche "Entrée" de votre clavier ou du clavier virtuel.</p>
             <p>Le mot descendra dans la grille des essais, chaque lettre sera colorée selon les règles suivantes:</p>
             <br/>
