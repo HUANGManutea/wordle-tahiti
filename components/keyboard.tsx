@@ -55,7 +55,7 @@ export default function Keyboard(props: KeyboardProps) {
 
     return (
         <div className="flex flex-col gap-2">
-            <div className="flex flex-row justify-center gap-2">
+            <div className="flex flex-row justify-center gap-1 sm:gap-2">
                 {voyelles.map((letter) => (
                         <Key key={letter.key}
                             letter={letter}
@@ -70,7 +70,7 @@ export default function Keyboard(props: KeyboardProps) {
                     letter={backspace} onKeyLongPressed={() => {}}
                     onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
             </div>
-            <div className="flex flex-row justify-center gap-2">
+            <div className="flex flex-row justify-center gap-1 sm:gap-2">
                 {consonnes.map((letter) => (
                     <Key key={letter.key}
                         letter={letter}

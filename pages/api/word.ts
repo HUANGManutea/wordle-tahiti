@@ -18,7 +18,7 @@ export default function handler(
   if (dateDebut) {
     const dateDebutUTC = zonedTimeToUtc(dateDebut, 'Pacific/Tahiti');
     const currentDateUTC = new Date();
-    const diffDays = differenceInDays(currentDateUTC, dateDebutUTC);
+    const diffDays = differenceInDays(dateDebutUTC, currentDateUTC);
     res.status(200).json({ word: wordList[diffDays%wordList.length] })
   } else {
     res.status(500).json({word: ""});

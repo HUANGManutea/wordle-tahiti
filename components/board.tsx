@@ -1,5 +1,5 @@
 import { Theme } from "../lib/theme";
-import Tile from "./Tile/tile";
+import Tile from "./tile";
 
 type BoardProps = {
     word: string,
@@ -34,9 +34,9 @@ export default function Board(props: BoardProps) {
     }
 
     return (
-        <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-2">
-                    <div className="grid grid-cols-5 gap-2 h-16 m-auto">
+        <div className="flex flex-col gap-5 sm:gap-8">
+            <div className="flex flex-col gap-1 sm:gap-2">
+                    <div className="grid grid-cols-5 gap-1 sm:gap-2 h-14 m-auto  items-center">
                         {
                             padTentative(props.currentTentative, props.wordLength).split("").map((char, indexChar) => (
                                 <Tile key={`tile-currtent-${indexChar}`} theme={props.theme} character={char} valid={0}></Tile>
@@ -44,11 +44,11 @@ export default function Board(props: BoardProps) {
                         }
                     </div>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 sm:gap-2">
                 {
                     props.tentatives.map((tentative, indexTentative) => {
                         return (
-                            <div key={`tentative-${indexTentative}`} className="grid grid-cols-5 gap-2 h-16 m-auto">
+                            <div key={`tentative-${indexTentative}`} className="grid grid-cols-5 gap-1 sm:gap-2 h-14 m-auto items-center">
                                 {
                                     tentative.split("").map((char, indexChar) => (
                                         <Tile key={`tile-${indexTentative}-${indexChar}`} theme={props.theme} character={char} valid={computeValidTile(indexTentative, char, indexChar)}></Tile>
