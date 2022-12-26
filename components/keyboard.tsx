@@ -11,30 +11,24 @@ interface KeyboardEvent {
 }
 
 const voyelles = [
-    {key: "A", variants : ["A","Ā"]},
-    {key: "E", variants : ["E","Ē"]},
-    {key: "I", variants : ["I","Ī"]},
-    {key: "O", variants : ["O","Ō"]},
-    {key: "U", variants : ["U","Ū"]},
+    {key: "A", variants : ["A","'A","Ā","'Ā"]},
+    {key: "E", variants : ["E","'E","Ē","'Ē"]},
+    {key: "I", variants : ["I","'I","Ī","'Ī"]},
+    {key: "O", variants : ["O","'O","Ō","'Ō"]},
+    {key: "U", variants : ["U","'U","Ū","'Ū"]},
 ];
-
-const eta = {key: "'", variants : ["'"]};
 
 const consonnes = "FHMNPRTV".split('').map(letter => { return {key: letter, variants: [letter]}});
 
 const enter = {key: "↵", variants : ["↵"]};
 const backspace = {key: "⌫", variants: ["⌫"]};
 
-const keyLongPressed = (char: string) => {
-    console.log(`char pressed: ${char}`);
-}
-
 export default function Keyboard(props: KeyboardProps) {
 
     const keyDownHandler = (e: KeyboardEvent) => {
         let key = e.key.toUpperCase();
         
-        if (voyelles.find(v => v.key === key) || consonnes.find(v => v.key === key) || key === eta.key || key === "ENTER" || key === "BACKSPACE") {
+        if (voyelles.find(v => v.key === key) || consonnes.find(v => v.key === key) || key === "ENTER" || key === "BACKSPACE") {
             if (key === "ENTER") {
                 key = "↵";
             } else if (key === "BACKSPACE") {
@@ -60,9 +54,6 @@ export default function Keyboard(props: KeyboardProps) {
                             letter={letter}
                             onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>
                     ))}
-                <Key key={eta.key}
-                    letter={eta}
-                    onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>
                 <Key key={backspace.key}
                     letter={backspace}
                     onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>

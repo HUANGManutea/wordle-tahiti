@@ -72,15 +72,6 @@ export default function Key(props: KeyProps) {
         }
     }, [isPopoverContentActive]);
 
-    useEffect(() => {
-        const variantA = document.getElementById("key-variant-A");
-        if (variantA) {
-            variantA.addEventListener("", (event: any) => {
-                console.log(event);
-            })
-        }
-    })
-
     if (props.letter.variants.length > 1) {
         return (
             <div {...bind()} className="inline-flex relative popover-wrapper">

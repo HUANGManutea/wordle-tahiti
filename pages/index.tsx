@@ -12,7 +12,7 @@ import { CodeBracketIcon, BookOpenIcon, PencilSquareIcon, UserGroupIcon } from '
 import useTranslation from 'next-translate/useTranslation'
 
 type HomeProps = {
-  word: string
+  word: Array<string>
 }
 
 const defaultTheme: Theme = {
@@ -46,8 +46,8 @@ export async function getServerSideProps() {
 export default function Home(props: HomeProps) {
   const wordLength = 5;
   const tries = 5;
-  const [tentatives, setTentatives] = useState<Array<string>>(Array(tries).fill("     "));
-  const [currentTentative, setCurrentTentative] = useState("");
+  const [tentatives, setTentatives] = useState<Array<Array<string>>>(Array(tries).fill(Array(wordLength).fill(" ")));
+  const [currentTentative, setCurrentTentative] = useState<Array<string>>([]);
   const [tentativeIndex, setTentativeIndex] = useState(0);
   const [gameState, setGameState] = useState("RUNNING");
   const [selectedKey, setSelectedKey] = useState("");
@@ -87,7 +87,8 @@ export default function Home(props: HomeProps) {
     rulesContent2: t('howToRulesContent2'),
     rulesContent3: t('howToTulesContent3'),
     inputTitle: t('howToInputTitle'),
-    inputContent: t('howToInputContent'),
+    inputContent1: t('howToInputContent1'),
+    inputContent2: t('howToInputContent2'),
     gameTitle: t('howToGameTitle'),
     gameContent1: t('howToGameContent1'),
     gameContent2: t('howToGameContent2'),
@@ -142,13 +143,13 @@ export default function Home(props: HomeProps) {
     if (selectedKey != "") {
       if (selectedKey === '↵') {
         if (currentTentative.length === wordLength && tentativeIndex < tentatives.length) {
-          const copyCurrentTentative = `${currentTentative}`; 
+          const copyCurrentTentative = JSON.parse(JSON.stringify(currentTentative)); 
           const copyTentatives = JSON.parse(JSON.stringify(tentatives));
           copyTentatives[tentativeIndex] = copyCurrentTentative;
           setTentatives(copyTentatives);
-          setCurrentTentative("");
+          setCurrentTentative([]);
           setTentativeIndex(tentativeIndex + 1);
-          if (copyCurrentTentative === props.word) {
+          if (copyCurrentTentative.join('') === props.word.join('')) {
             setGameState("WIN");
           } else {
             if (tentativeIndex === tentatives.length - 1) {
@@ -161,15 +162,15 @@ export default function Home(props: HomeProps) {
           setCurrentTentative(currentTentative.slice(0, currentTentative.length - 1));
         }
       } else  {
-        if (currentTentative.length < wordLength) {
-          setCurrentTentative(`${currentTentative}${selectedKey}`);
+        if (currentTentative.length <  wordLength) {
+          setCurrentTentative([...currentTentative, selectedKey]);
         }
       }
       setSelectedKey("");
     }
   }, [tentativeIndex, selectedKey, tentatives]);
 
-  if (props.word == null || props.word === "") return <div>Récupération du mot...</div>;
+  if (props.word == null || props.word.length === 0) return <div>Récupération du mot...</div>;
 
   return (
     <>
@@ -246,7 +247,8 @@ export default function Home(props: HomeProps) {
         </div>
         <div>
             <h2>{howToTranslations.inputTitle}</h2>
-            <p>{howToTranslations.inputContent}</p>
+            <p>{howToTranslations.inputContent1}</p>
+            <p>{howToTranslations.inputContent2}</p>
             <br/>
         </div>
         <div>
