@@ -1,0 +1,30 @@
+{
+    "drawerAboutTitle": "A propos",
+    "drawerAboutContent": "Ce site a été développé par HUANG Manutea en partenariat avec l'association Tahiti DevOps et l'Académie Tahitienne (Fare Vanaa).",
+    "drawerThanksTitle": "Remerciements",
+    "drawerThanksContent1": "Je remercie l'association Tahiti DevOps pour leur engouement et pour avoir contacté l'Académie Tahitienne.",
+    "drawerThanksContent2": "Je remercie l'Académie Tahitienne pour m'avoir fourni la liste des mots de 5 lettres du dictionnaire Tahitien.",
+    "drawerLicenceTitle": "Licence",
+    "drawerLicenceContent": "Ce site n'a aucun but lucratif. Le code source de ce site ainsi que la liste des mots sont sous licence Creative Common.",
+    "drawerSeeMoreTitle": "En savoir plus",
+    "drawerTahitiDevOps": "L'association Tahiti DevOps",
+    "drawerTahitianAcademy": "L'académie Tahitienne (Fare Vanaa)",
+    "drawerMyBlog": "Mon blog",
+    "drawerMyGithub": "Mon GitHub",
+    "drawerSourceCode": "Le code source de Wordle Tahiti",
+
+    "settingsColorbindMode": "Mode Daltonisme",
+
+    "howToRulesTitle": "Règles",
+    "howToRulesContent1": "Vous devez deviner le mot du jour en 5 essais.",
+    "howToRulesContent2": "Le mot du jour est un mot tahitien de 5 lettres.",
+    "howToTulesContent3": "Le 'eta est une lettre.",
+    "howToInputTitle": "Saisie",
+    "howToInputContent": "Vous pouvez écrire les lettres avec votre clavier si vous êtes sur un ordinateur. Vous pouvez aussi cliquer/appuyer sur le clavier virtuel tahitien en bas de page.",
+    "howToGameTitle": "Déroulement du jeu",
+    "howToGameContent1": "Une fois que vous avez renseigné les 5 lettres, appuyez sur la touche \"Entrée\" de votre clavier ou du clavier virtuel.",
+    "howToGameContent2": "Le mot descendra dans la grille des essais, chaque lettre sera colorée selon les règles suivantes:",
+    "howToGameExample1": "La lettre n'existe pas dans le mot du jour",
+    "howToGameExample2": "La lettre existe dans le mot du jour, mais elle n'est pas au bon endroit",
+    "howToGameExample3": "La lettre est bien placée"
+}

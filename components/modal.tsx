@@ -1,5 +1,6 @@
 import { Theme } from "../lib/theme";
 import React, { useEffect, useState } from 'react';
+import useTranslation from 'next-translate/useTranslation'
 
 type ModalProps = {
     isHidden: boolean,
@@ -10,6 +11,9 @@ type ModalProps = {
 
 export default function Modal(props: ModalProps) {
     const [modalClassName, setModalClassName] = useState('app-modal');
+
+    const { t } = useTranslation('common');
+    const thanks = t('thanks');
 
     const onSuccessClick = () => {
         props.setIsHidden(!props.isHidden);
@@ -31,7 +35,7 @@ export default function Modal(props: ModalProps) {
                     {props.children}
                 </div>
                 <div className="flex flex-row justify-center">
-                    <button onClick={onSuccessClick} className={`app-button ${props.theme.borderValid} ${props.theme.textValid}`}>Māuruuru !</button>
+                    <button onClick={onSuccessClick} className={`app-button ${props.theme.borderValid} ${props.theme.textValid}`}>{thanks}</button>
                 </div>
             </div>
         </div>

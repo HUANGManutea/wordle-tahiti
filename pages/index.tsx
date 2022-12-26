@@ -9,6 +9,7 @@ import { Theme } from '../lib/theme';
 import Tile from '../components/tile';
 import Drawer from '../components/drawer';
 import { CodeBracketIcon, BookOpenIcon, PencilSquareIcon, UserGroupIcon } from '@heroicons/react/24/solid'
+import useTranslation from 'next-translate/useTranslation'
 
 type HomeProps = {
   word: string
@@ -57,6 +58,45 @@ export default function Home(props: HomeProps) {
   const [isModalSettingsHidden, setIsModalSettingsHidden] = useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>(defaultTheme);
+
+  const { t } = useTranslation('home');
+
+  const drawerTranslations = {
+    aboutTitle: t('drawerAboutTitle'),
+    aboutContent: t('drawerAboutContent'),
+    thanksTitle: t('drawerThanksTitle'),
+    thanksContent1: t('drawerThanksContent1'),
+    thanksContent2: t('drawerThanksContent2'),
+    licenceTitle: t('drawerLicenceTitle'),
+    licenceContent: t('drawerLicenceContent'),
+    seeMoreTitle: t('drawerSeeMoreTitle'),
+    tahitiDevOps: t('drawerTahitiDevOps'),
+    tahitianAcademy: t('drawerTahitianAcademy'),
+    myBlog: t('drawerMyBlog'),
+    myGithub: t('drawerMyGithub'),
+    sourceCode: t('drawerSourceCode')
+  };
+
+  const settingsTranslations = {
+    colorbindMode: t('settingsColorbindMode')
+  };
+
+  const howToTranslations = {
+    rulesTitle: t('howToRulesTitle'),
+    rulesContent1: t('howToRulesContent1'),
+    rulesContent2: t('howToRulesContent2'),
+    rulesContent3: t('howToTulesContent3'),
+    inputTitle: t('howToInputTitle'),
+    inputContent: t('howToInputContent'),
+    gameTitle: t('howToGameTitle'),
+    gameContent1: t('howToGameContent1'),
+    gameContent2: t('howToGameContent2'),
+    gameExample1: t('howToGameExample1'),
+    gameExample2: t('howToGameExample2'),
+    gameExample3: t('howToGameExample3'),
+  }
+
+
 
   const onKeyChosen = (char: string) => {
     setSelectedKey(char);
@@ -147,34 +187,34 @@ export default function Home(props: HomeProps) {
       <Drawer isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen}>
         <div className='flex flex-col gap-3'>
           <div className='flex flex-col gap-3'>
-            <h2>A propos</h2>
-            <p>Ce site a été développé par HUANG Manutea en partenariat avec l'association Tahiti DevOps et l'Académie Tahitienne (Fare Vanaa).</p>
-            <h2>Remerciements</h2>
-            <p>Je remercie l'association Tahiti DevOps pour leur engouement et pour avoir contacté l'Académie Tahitienne.</p>
-            <p>Je remercie l'Académie Tahitienne pour m'avoir fourni la liste des mots de 5 lettres du dictionnaire Tahitien.</p>
-            <h2>Licence</h2>
-            <p>Ce site n'a aucun but lucratif. Le code source de ce site ainsi que la liste des mots sont sous licence Creative Common.</p>
-            <h2>En savoir plus</h2>
+            <h2>{drawerTranslations.aboutTitle}</h2>
+            <p>{drawerTranslations.aboutContent}</p>
+            <h2>{drawerTranslations.thanksTitle}</h2>
+            <p>{drawerTranslations.thanksContent1}</p>
+            <p>{drawerTranslations.thanksContent2}</p>
+            <h2>{drawerTranslations.licenceTitle}</h2>
+            <p>{drawerTranslations.licenceContent}</p>
+            <h2>{drawerTranslations.seeMoreTitle}</h2>
             <div className='flex flex-col gap-2'>
               <div className='flex flex-row gap-1 items-center'>
                 <UserGroupIcon className='h-5'></UserGroupIcon>
-                <a className={theme.textValid} href="https://tahiti.dev/" target="_blank">L'association Tahiti DevOps</a>
+                <a className={theme.textValid} href="https://tahiti.dev/" target="_blank">{drawerTranslations.tahitiDevOps}</a>
               </div>
               <div className='flex flex-row gap-1 items-center'>
                 <BookOpenIcon className='h-5'></BookOpenIcon>
-                <a className={theme.textValid} href="http://www.farevanaa.pf/" target="_blank">L'académie Tahitienne (Fare Vanaa)</a>
+                <a className={theme.textValid} href="http://www.farevanaa.pf/" target="_blank">{drawerTranslations.tahitianAcademy}</a>
               </div>
               <div className='flex flex-row gap-1 items-center'>
                 <PencilSquareIcon className='h-5'></PencilSquareIcon>
-                <a className={theme.textValid} href="https://huangmanutea.github.io/blog.dev/" target="_blank">Mon blog</a>
+                <a className={theme.textValid} href="https://huangmanutea.github.io/blog.dev/" target="_blank">{drawerTranslations.myBlog}</a>
               </div>
               <div className='flex flex-row gap-1 items-center'>
                 <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-white"><path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0 1 12 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2Z"></path></svg>
-                <a className={theme.textValid} href="https://github.com/HUANGManutea" target="_blank">Mon GitHub</a>
+                <a className={theme.textValid} href="https://github.com/HUANGManutea" target="_blank">{drawerTranslations.myGithub}</a>
               </div>
               <div className='flex flex-row gap-1 items-center'>
                 <CodeBracketIcon className='h-5'></CodeBracketIcon>
-                <a className={theme.textValid} href="https://github.com/HUANGManutea/wordle-tahiti" target="_blank">Le code source de Wordle Tahiti</a>
+                <a className={theme.textValid} href="https://github.com/HUANGManutea/wordle-tahiti" target="_blank">{drawerTranslations.sourceCode}</a>
               </div>
             </div>
           </div>
@@ -191,41 +231,41 @@ export default function Home(props: HomeProps) {
               <label className="inline-flex relative cursor-pointer m-3">
                   <input type="checkbox" value="" className="sr-only peer" onChange={(event) => event.target.checked ? onCheckedColorblind(true) : onCheckedColorblind(false)}/>
                   <div className="w-11 h-6 outline-white bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                  <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Mode Daltonisme</span>
+                  <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{settingsTranslations.colorbindMode}</span>
               </label>
           </div>
         </div>
       </Modal>
       <Modal isHidden={isModalHowToHidden} setIsHidden={setIsModalHowToHidden} theme={theme}>
         <div>
-            <h2>Règles</h2>
-            <p>Vous devez deviner le mot du jour en 5 essais.</p>
-            <p>Le mot du jour est un mot tahitien de 5 lettres.</p>
-            <p>Le 'eta est une lettre.</p>
+            <h2>{howToTranslations.rulesTitle}</h2>
+            <p>{howToTranslations.rulesContent1}</p>
+            <p>{howToTranslations.rulesContent2}</p>
+            <p>{howToTranslations.rulesContent3}</p>
             <br/>
         </div>
         <div>
-            <h2>Saisie</h2>
-            <p>Vous pouvez écrire les lettres avec votre clavier si vous êtes sur un ordinateur. Vous pouvez aussi cliquer/appuyer sur le clavier virtuel tahitien en bas de page.</p>
+            <h2>{howToTranslations.inputTitle}</h2>
+            <p>{howToTranslations.inputContent}</p>
             <br/>
         </div>
         <div>
-            <h2>Déroulement du jeu</h2>
-            <p>Une fois que vous avez renseigné les 5 lettres, appuyez sur la touche "Entrée" de votre clavier ou du clavier virtuel.</p>
-            <p>Le mot descendra dans la grille des essais, chaque lettre sera colorée selon les règles suivantes:</p>
+            <h2>{howToTranslations.gameTitle}</h2>
+            <p>{howToTranslations.gameContent1}</p>
+            <p>{howToTranslations.gameContent2}</p>
             <br/>
             <div className="flex flex-col gap-2">
                 <div className="flex flex-row gap-5 items-center">
                     <Tile theme={theme} character={"A"} valid={1}></Tile>
-                    <p>La lettre n'existe pas dans le mot du jour</p>
+                    <p>{howToTranslations.gameExample1}</p>
                 </div>
                 <div className="flex flex-row gap-5 items-center">
                     <Tile theme={theme} character={"A"} valid={2}></Tile>
-                    <p>La lettre existe dans le mot du jour, mais elle n'est pas au bon endroit</p>
+                    <p>{howToTranslations.gameExample2}</p>
                 </div>
                 <div className="flex flex-row gap-5 items-center">
                     <Tile theme={theme} character={"A"} valid={3}></Tile>
-                    <p>La lettre est bien placée</p>
+                    <p>{howToTranslations.gameExample3}</p>
                 </div>
             </div>
         </div>
