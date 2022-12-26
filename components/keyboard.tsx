@@ -1,4 +1,3 @@
-import { Letter } from "../types/Letter";
 import Key from "./key";
 import React, { useEffect } from "react";
 
@@ -26,8 +25,8 @@ const consonnes = "FHMNPRTV".split('').map(letter => { return {key: letter, vari
 const enter = {key: "↵", variants : ["↵"]};
 const backspace = {key: "⌫", variants: ["⌫"]};
 
-const keyLongPressed = (letter: Letter) => {
-    console.log(`letter long pressed: ${letter.key}`);
+const keyLongPressed = (char: string) => {
+    console.log(`char pressed: ${char}`);
 }
 
 export default function Keyboard(props: KeyboardProps) {
@@ -59,28 +58,24 @@ export default function Keyboard(props: KeyboardProps) {
                 {voyelles.map((letter) => (
                         <Key key={letter.key}
                             letter={letter}
-                            onKeyLongPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') keyLongPressed(letter)}}
-                            onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
+                            onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>
                     ))}
                 <Key key={eta.key}
                     letter={eta}
-                    onKeyLongPressed={() => {}}
-                    onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
+                    onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>
                 <Key key={backspace.key}
-                    letter={backspace} onKeyLongPressed={() => {}}
-                    onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
+                    letter={backspace}
+                    onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>
             </div>
             <div className="flex flex-row justify-center gap-1 sm:gap-2">
                 {consonnes.map((letter) => (
                     <Key key={letter.key}
                         letter={letter}
-                        onKeyLongPressed={() => {}}
-                        onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
+                        onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>
                 ))}
                 <Key key={enter.key}
                     letter={enter}
-                    onKeyLongPressed={() => {}}
-                    onKeyPressed={(letter: Letter) => {if (props.gameState === 'RUNNING') props.onKeyChosen(letter.key)}}></Key>
+                    onKeyPressed={(char: string) => {if (props.gameState === 'RUNNING') props.onKeyChosen(char)}}></Key>
             </div>
         </div>
     );

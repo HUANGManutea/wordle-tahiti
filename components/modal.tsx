@@ -31,7 +31,7 @@ export default function Modal(props: ModalProps) {
                     {props.children}
                 </div>
                 <div className="flex flex-row justify-center">
-                    <button onClick={onSuccessClick} className={`app-button ${props.theme.borderValid} ${props.theme.textValid}`}>Mauruuru !</button>
+                    <button onClick={onSuccessClick} className={`app-button ${props.theme.borderValid} ${props.theme.textValid}`}>Māuruuru !</button>
                 </div>
             </div>
         </div>

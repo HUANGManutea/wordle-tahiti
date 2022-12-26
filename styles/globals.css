@@ -60,6 +60,14 @@ a {
   @apply h-14 p-2.5 sm:p-5 border-solid border-2 border-gray-300 rounded-md text-center active:bg-gray-300 active:text-black ;
 }
 
+.app-variant-key {
+  @apply h-14 p-2.5 sm:p-5 z-20;
+}
+
+.app-variant-key-active {
+  @apply bg-gray-300 text-black;
+}
+
 .app-button {
   @apply p-2 border-solid border-2 rounded-md sm:p-3;
 }
@@ -82,4 +90,12 @@ h2 {
 
 a {
   @apply underline;
+}
+
+.popover-content {
+  @apply absolute invisible opacity-0 bg-black border-white border rounded-md w-auto translate-y-2 -top-12;
+}
+
+.popover-content-active {
+  @apply z-10 opacity-100 visible translate-x-0 translate-y-0 transition-all;
 }

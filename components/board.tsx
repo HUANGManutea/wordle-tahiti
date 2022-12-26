@@ -17,7 +17,7 @@ const padTentative = (tentative: string, wordLength: number) => {
 export default function Board(props: BoardProps) {
     if (!props) return <div>"Loading..."</div>;
     
-    const computeValidTile = (indexTentative: number, char: string, indexChar: number) => {
+    const computeValidTile = (char: string, indexChar: number) => {
         if (char === "" || char === " ") {
             // case empty => do not map to class
             return 0;
@@ -51,7 +51,7 @@ export default function Board(props: BoardProps) {
                             <div key={`tentative-${indexTentative}`} className="grid grid-cols-5 gap-1 sm:gap-2 h-14 m-auto items-center">
                                 {
                                     tentative.split("").map((char, indexChar) => (
-                                        <Tile key={`tile-${indexTentative}-${indexChar}`} theme={props.theme} character={char} valid={computeValidTile(indexTentative, char, indexChar)}></Tile>
+                                        <Tile key={`tile-${indexTentative}-${indexChar}`} theme={props.theme} character={char} valid={computeValidTile(char, indexChar)}></Tile>
                                     ))
                                 }
                             </div>
