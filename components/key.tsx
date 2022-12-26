@@ -26,7 +26,6 @@ export default function Key(props: KeyProps) {
                             element.classList.add('app-variant-key-active');
                         } else {
                             element.classList.remove('app-variant-key-active');
-
                         }
                     });
                 }

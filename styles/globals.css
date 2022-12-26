@@ -10,12 +10,11 @@
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* @media (prefers-color-scheme: dark) {
+
+} */
+:root {
+  --background: black;
 }
 
 * {
@@ -31,14 +30,16 @@ body {
 }
 
 body {
-  height: 100%;
-  color: rbg(--foreground-rgb);
+  @apply h-full bg-gray-800 text-white;
+  /* height: 100%; */
+
+  /* color: rbg(--foreground-rgb);
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 a {
@@ -61,7 +62,7 @@ a {
 }
 
 .app-variant-key {
-  @apply h-14 p-2.5 sm:p-5 z-20;
+  @apply h-14 p-2.5 sm:p-5 z-20 hover:bg-gray-300 hover:text-black;
 }
 
 .app-variant-key-active {

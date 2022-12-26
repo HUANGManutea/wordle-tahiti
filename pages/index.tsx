@@ -71,7 +71,7 @@ export default function Home(props: HomeProps) {
     licenceContent: t('drawerLicenceContent'),
     seeMoreTitle: t('drawerSeeMoreTitle'),
     tahitiDevOps: t('drawerTahitiDevOps'),
-    tahitianAcademy: t('drawerTahitianAcademy'),
+    STI: t('drawerSTI'),
     myBlog: t('drawerMyBlog'),
     myGithub: t('drawerMyGithub'),
     sourceCode: t('drawerSourceCode')
@@ -202,7 +202,7 @@ export default function Home(props: HomeProps) {
               </div>
               <div className='flex flex-row gap-1 items-center'>
                 <BookOpenIcon className='h-5'></BookOpenIcon>
-                <a className={theme.textValid} href="http://www.farevanaa.pf/" target="_blank">{drawerTranslations.tahitianAcademy}</a>
+                <a className={theme.textValid} href="https://www.service-public.pf/voir/annuaire/sti-service-de-la-traduction-et-de-linterpretariat/" target="_blank">{drawerTranslations.STI}</a>
               </div>
               <div className='flex flex-row gap-1 items-center'>
                 <PencilSquareIcon className='h-5'></PencilSquareIcon>
@@ -231,7 +231,7 @@ export default function Home(props: HomeProps) {
               <label className="inline-flex relative cursor-pointer m-3">
                   <input type="checkbox" value="" className="sr-only peer" onChange={(event) => event.target.checked ? onCheckedColorblind(true) : onCheckedColorblind(false)}/>
                   <div className="w-11 h-6 outline-white bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                  <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{settingsTranslations.colorbindMode}</span>
+                  <span className="ml-3 text-sm font-medium text-white">{settingsTranslations.colorbindMode}</span>
               </label>
           </div>
         </div>
