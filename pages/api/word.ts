@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { differenceInDays } from 'date-fns/fp';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { zonedTimeToUtc } from 'date-fns-tz'
